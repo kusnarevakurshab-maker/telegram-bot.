@@ -33,7 +33,7 @@ async def get_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Выберите услугу:",
         reply_markup=ReplyKeyboardMarkup(keyboard, resize_keyboard=True),
     )
-       return SERVICE
+    return SERVICE
 
 
 async def get_service(update: Update, context: ContextTypes.DEFAULT_TYPE):
