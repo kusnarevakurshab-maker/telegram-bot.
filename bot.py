@@ -1,23 +1,20 @@
 import os
-from telegram import Update, ReplyKeyboardMarkup
-from telegram.ext import (
-    ApplicationBuilder,
-    CommandHandler,
-    MessageHandler,
-    filters,
-    ContextTypes,
-    ConversationHandler,
-)
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, CallbackContext, ConversationHandler
 
-NAME, PHONE, SERVICE, SOURCE, CITY = range(5)
+# Вспомогательные переменные
+NAME, PHONE, SERVICE, SOURCE, CITY, LOCATION = range(6)
 
 TOKEN = os.getenv("TOKEN")
 MANAGERS = [int(x) for x in os.getenv("MANAGERS", "").split(",") if x]
 
-
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("👋 Как вас зовут?")
+async def start(update: Update, context: CallbackContext):
+    await update.message.reply_text("Как вас зовут?")
     return NAME
+
+async def get_name(update: Update, context: CallbackContext):
+    context.user_data["name"] = update.message.text
+    await
 
 
 async def get_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
