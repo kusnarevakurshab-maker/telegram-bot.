@@ -67,7 +67,8 @@ async def get_city(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for manager in MANAGERS:
         await context.bot.send_message(chat_id=manager, text=text)
 
-    await update.message.reply_text("✅
+    await update.message.reply_text("Введите город:")
+
     await update.message.reply_text("✅ Спасибо! Мы с вами свяжемся.")
     return ConversationHandler.END
 
