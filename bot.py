@@ -10,7 +10,6 @@ NAME, PHONE, SERVICE, SOURCE, CITY = range(5)
 TOKEN = os.getenv("TOKEN")
 MANAGERS = [int(x) for x in os.getenv("MANAGERS", "").split(",") if x]
 
-# СТАРТ
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Как вас зовут?")
     return NAME
@@ -26,6 +25,7 @@ async def get_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return SERVICE
 
 async def get_service(update: Update, context: ContextTypes.DEFAULT_TYPE):
+   
     context.user_data["service"] = update.message.text
     await update.message.reply_text("Откуда вы о нас узнали?")
     return SOURCE
@@ -53,6 +53,7 @@ async def get_city(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("✅ Спасибо! Мы с вами свяжемся.")
     return ConversationHandler.END
 
+
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
@@ -72,9 +73,7 @@ def main():
 
     app.run_polling()
 
+
 if __name__ == "__main__":
     main()
-
-
-
-
+                      
