@@ -1,5 +1,5 @@
 import os
-from telegram.ext import ApplicationBuilder
+from telegram import Update
 from telegram.ext import (
     ApplicationBuilder, CommandHandler, MessageHandler,
     filters, ContextTypes, ConversationHandler
@@ -43,8 +43,7 @@ async def get_source(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Город
 async def get_city(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data["city"] = update
-    await update.message.text
+    context.user_data["city"] = update.message.text
 
     text = (
         f"Новая заявка:\n"
@@ -63,10 +62,8 @@ async def get_city(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def main():
-    # Создание приложения с использованием токена
     application = ApplicationBuilder().token(TOKEN).build()
 
-    # Настройка обработчиков
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
         states={
@@ -81,9 +78,12 @@ async def main():
 
     application.add_handler(conv_handler)
 
-    # Запуск бота
     await application.run_polling()
+
 
 if __name__ == "__main__":
     import asyncio
     asyncio.run(main())
+``
+
+  
