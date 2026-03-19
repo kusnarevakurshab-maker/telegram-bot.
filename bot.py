@@ -44,7 +44,7 @@ async def get_source(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Город
 async def get_city(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["city"] = update
-     await update.message.text
+    await update.message.text
 
     text = (
         f"Новая заявка:\n"
