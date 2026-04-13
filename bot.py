@@ -61,7 +61,7 @@ async def get_city(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return ConversationHandler.END
 
 
-async def main():
+def main():
     application = ApplicationBuilder().token(TOKEN).build()
 
     conv_handler = ConversationHandler(
@@ -78,12 +78,13 @@ async def main():
 
     application.add_handler(conv_handler)
 
-    await application.run_polling()
+    application.run_polling()
 
 
 if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
-``
+    main()
+
+
 
   
+
